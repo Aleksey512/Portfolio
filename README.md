@@ -25,4 +25,4 @@
 
 - [DataScience](https://github.com/Aleksey512/Portfolio/tree/main/DataScience) - мое обучение в сфере обработки, анализа дынных
 
-[MailingTestCase](https://github.com/Aleksey512/Portfolio/tree/main/MailingTestCase) - [тестовое задание](https://github.com/Aleksey512/Portfolio/blob/main/MailingTestCase/Test%20Task.pdf) для примема на работу и пример его решения.
+- [MailingTestCase](https://github.com/Aleksey512/Portfolio/tree/main/MailingTestCase) - [тестовое задание](https://github.com/Aleksey512/Portfolio/blob/main/MailingTestCase/Test%20Task.pdf) для примема на работу и пример его решения.
