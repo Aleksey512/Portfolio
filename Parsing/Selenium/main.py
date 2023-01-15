@@ -17,8 +17,8 @@ def login(browser):
 		username = browser.find_element(By.XPATH, '//*[@id="HH-React-Root"]/div/div[3]/div[1]/div/div/div/div/div/div[1]/div[1]/div[1]/div/div[2]/form/div[1]/fieldset/input')
 		password = browser.find_element(By.XPATH, '//*[@id="HH-React-Root"]/div/div[3]/div[1]/div/div/div/div/div/div[1]/div[1]/div[1]/div/div[2]/form/div[2]/fieldset/input')
 
-		username.send_keys("yakunina1111@gmail.com")
-		password.send_keys("Aleksey512" + Keys.ENTER)
+		username.send_keys("USERNAME")
+		password.send_keys("PASSWORD" + Keys.ENTER)
 
 		browser.implicitly_wait(delay)
 
