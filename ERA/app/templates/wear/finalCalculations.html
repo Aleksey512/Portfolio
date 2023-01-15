@@ -1,0 +1,14 @@
+<!DOCTYPE HTML PUBLIC>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Final Calculation</title>
+</head>
+<body>
+    <form action="" method="POST" name="finalCalculations">
+        {% csrf_token %}
+        <legend>Полный износ дома составил {{finalValue}}</legend>
+        <button id="consumeButton" type="submit" name="finalCalculations">Consume</button>
+    </form>
+</body>
+</html>

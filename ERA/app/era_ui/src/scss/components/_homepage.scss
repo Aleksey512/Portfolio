@@ -1,0 +1,270 @@
+.main {
+  margin-top: 85px;
+  max-width: 100% !important;
+  //background-image: url('../../images/parallax-2.gif');
+  &__menu {
+    position: fixed;
+    margin-left: 10px;
+    margin-top: 4vh;
+
+    &-button {
+      font-size: 30px;
+      color: #fff;
+      font-weight: bold;
+      margin-left: 15px;
+      cursor: pointer;
+      text-shadow: 2px 2px 10px $default-color;
+      display: inline-block;
+      padding-right: 54px;
+
+      &::after {
+        position: absolute;
+        content: '';
+        background-image: url('../../images/arrow-down.svg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 8%;
+        width: 28px;
+        right: 0;
+        top: 10px;
+        transition: all .4s;
+      }
+
+      &:hover {
+        color: $accent-color;
+        transition: all .3s;
+      }
+    }
+
+    &-button:hover::after {
+      svg {
+        path {
+          fill: $accent-color;
+        }
+      }
+    }
+
+    &-content {
+      margin-top: 10px;
+      max-width: 250px;
+      background-color: $bg-color;
+      font-weight: bold;
+      padding: 20px 30px 20px 10px;
+      border: 1px solid $default-color;
+      display: none;
+
+      &--active {
+        display: block;
+      }
+    }
+
+    &-list__item + .main__menu-list__item {
+      margin-top: 10px;
+    }
+
+    &-list__link {
+      color: $text-color;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+
+  &__parallax {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 250px;
+  }
+
+  &__parallax-1 {
+    background-image: url('../../images/parallax-2.gif');
+    color: #fff;
+    height: calc(100vh - 85px);
+  }
+
+  &__parallax-2 {
+    background-image: url('../../images/parallax-2.gif');
+  }
+
+  &__parallax-3 {
+    background-image: url('../../images/parallax-2.gif');
+  }
+
+  &__parallax-4 {
+    background-image: url('../../images/parallax-2.gif');
+  }
+
+  &__parallax-5 {
+    background-image: url('../../images/parallax-2.gif');
+  }
+
+  &__parallax-6 {
+    background-image: url('../../images/parallax-2.gif');
+  }
+
+  &__parallax-7 {
+    background-image: url('../../images/parallax-2.gif');
+  }
+
+  &__content-top {
+    max-width: 750px;
+    margin-left: auto;
+    text-shadow: 2px 2px 10px $default-color;
+    font-size: 18px;
+    transform: translateY(-90px);
+  }
+
+  &__parallax-1__content {
+    text-align: center;
+    padding: 2% 14% 0;
+    text-shadow: 2px 2px 10px $default-color;
+    height: 105%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__content-paragraph {
+    text-indent: 25px;
+    text-align: left;
+  }
+
+  &__content-top__slogan {
+    font-size: 32px;
+    line-height: 45px;
+  }
+
+  &__content-top__title {
+    //padding-top: 28%;
+    text-align: center;
+    font-size: 70px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    //margin-bottom: 180px;
+  }
+
+  &__content-top__certificate {
+    font-style: italic;
+    margin-top: 15px;
+  }
+
+  &__content-title-4, .main__content-title-2 {
+    text-align: left;
+  }
+
+  &__content {
+    text-align: left;
+    max-width: 1170px;
+    margin: 0 auto;
+    //background-color: $bg-color;
+    //color: $text-color;
+    padding: 40px;
+    font-size: 22px;
+  }
+
+  &__content-title {
+    padding-bottom: 30px;
+    font-weight: bold;
+  }
+
+  &__content-list__item {
+    text-align: start;
+
+    span {
+      color: $accent-color;
+    }
+  }
+
+  &__content-table {
+    margin: 0 auto 50px;
+    max-width: 700px;
+    border: 2px solid #000;
+
+    th, td {
+      border: 1px solid #000;
+    }
+
+    tr:last-child {
+      font-weight: normal;
+    }
+
+    thead th:nth-child(1) {
+      width: 33%;
+    }
+
+    thead th:nth-child(2) {
+      text-align: center;
+      width: 33%;
+    }
+
+    thead th:nth-child(3) {
+      text-align: center;
+      width: 33%;
+    }
+
+    td:nth-child(2) {
+      text-align: center;
+    }
+  }
+
+  &__undertable-buttons {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__content-btn {
+    @extend %btn;
+    max-width: 300px;
+    margin-top: 25px;
+    text-align: center;
+    font-size: 22px;
+    margin: 0 10px;
+  }
+
+  &__demo-btn {
+    line-height: 2;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+
+    button {
+      margin: 0 10px;
+    }
+  }
+}
+
+.help-table {
+  width: auto !important;
+  margin-top: 7%;
+  display: table !important;
+
+  thead {
+    th {
+      text-align: center;
+    }
+  }
+
+  tbody {
+    td:nth-child(1) {
+      width: 80%;
+    }
+  }
+}
+
+.slider {
+  &__item {
+    max-width: 700px;
+    display: flex !important;
+    margin: 0 auto;
+  }
+}
+
+.react-player video {
+  position: relative;
+  left: 0;
+  top: 0;
+  transform: none;
+}

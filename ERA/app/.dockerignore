@@ -1,0 +1,5 @@
+./venv
+./test.py
+./test.xlsx
+./test_2.xlsx
+./db.sqlite3

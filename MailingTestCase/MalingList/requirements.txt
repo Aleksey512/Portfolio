@@ -1,0 +1,34 @@
+# Главное
+Django
+django-cors-headers
+asgiref
+sqlparse
+tzdata
+pytz
+django-environ
+
+
+# Django Rest Framework
+djangorestframework
+djangorestframework_simplejwt
+markdown
+django-filter
+django-decouple
+django-cors-headers
+
+# Тесты
+flake8
+black
+
+# API документация
+drf-yasg
+drf-yasg
+
+# Celery
+django-widget-tweaks
+Celery
+django-celery-beat
+
+# Redis
+redis
+

@@ -1,0 +1,49 @@
+$accent-color: #ff4848;
+$text-color: #a5a7a8;
+$default-color: #1f487e;
+$bg-color: rgb(223, 223, 223);
+
+%btn {
+  padding: 14px 35px;
+  text-transform: uppercase;
+  background-color: #1f487e;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: .2s;
+  box-shadow: 0px, 7px, 20px, 0px, rgba(255, 17, 48, 0.3);
+
+  &:hover {
+    background-color: $accent-color;
+    color: #000;
+  }
+}
+
+%input {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: $text-color;
+  border: none;
+  margin-top: 4px;
+  height: 60px;
+  padding: 0 15px;
+  color: #000;
+}
+
+%checkbox {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  position: absolute;
+}
+
+%checkbox__span {
+  width: 16px;
+  height: 16px;
+  background-color: #1f487e;
+  position: absolute;
+  margin-left: -16px;
+  margin-top: -7px;
+}

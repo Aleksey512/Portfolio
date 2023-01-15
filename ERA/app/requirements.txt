@@ -1,0 +1,50 @@
+# Главное
+Django
+django-cors-headers
+asgiref
+sqlparse
+tzdata
+pytz
+django-environ
+psycopg2-binary
+Pillow
+gunicorn
+
+# Django Rest Framework
+djangorestframework
+djangorestframework_simplejwt
+markdown
+django-filter
+django-decouple
+
+# Тесты
+flake8
+black
+
+# API документация
+drf-yasg
+
+# Телеграмм бот
+django-tgbot
+
+# Excel
+openpyxl
+drf-excel
+transliterate
+
+# Celery
+django-widget-tweaks
+Celery
+django-celery-beat
+eventlet
+
+# Redis
+redis
+
+# Django-history-simple
+django-simple-history
+
+# Django-Channels
+daphne
+channels
+channels-redis

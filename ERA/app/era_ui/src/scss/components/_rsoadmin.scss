@@ -1,0 +1,40 @@
+.rsoadmin {
+  &__wells-wrapper {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-gap: 20px;
+  }
+
+  &__ownerwells-input__wells {
+    border: none;
+    width: 100%;
+    height: 80px;
+    @extend %btn;
+    padding: 5px;
+  }
+
+  &__table {
+    margin-top: 20px;
+
+    tbody {
+      tr {
+        td {
+          font-weight: normal;
+          font-size: 18px;
+          border: 1px solid #000;
+        }
+
+        td + td {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  &__table-input {
+    @extend %btn;
+    font-weight: normal;
+    font-size: 15px;
+    padding: 10px 15px;
+  }
+}

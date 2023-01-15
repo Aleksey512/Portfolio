@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="keywords" content="Детализация платы">
+  <meta name="description" content="">
+  <title>Детализация платы</title>
+  <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
+  <link rel="stylesheet" href="{% static 'css/fare.css' %}" media="screen">
+  <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
+  <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
+  <meta name="generator" content="Nicepage 4.11.3, nicepage.com">
+  <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+  <link rel="icon" href="https://tech.orel-ecenter.ru/wp-content/uploads/2020/01/1-1-150x150.png" sizes="32x32">
+  <link rel="icon" href="https://tech.orel-ecenter.ru/wp-content/uploads/2020/01/1-1.png" sizes="192x192">
+  <script type="application/ld+json">{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": ""
+}</script>
+  <meta name="theme-color" content="#478ac9">
+  <meta property="og:title" content="tarif">
+  <meta property="og:type" content="website">
+</head>
+<body>
+  <form action="#" method="POST" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="custom"  name="detail" style="padding: 10px;">
+    {% csrf_token %}
+    <div class="u-form-group u-form-name">
+      <label for="name-1ba8" class="u-label">Адрес {{ sum }}</label>
+      <input type="text" placeholder="Введите адрес" id="name-1ba8" name="address" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="">
+    </div>
+    <div class="u-form-group">
+      <label for="email-1ba8" class="u-label">Управляющая организация</label>
+      <input type="text" placeholder="Введите название управляющей компании" id="email-1ba8" name="company" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+    </div>
+    <div class="u-form-group u-form-group-3">
+      <label for="text-e82d" class="u-label">Дата</label>
+      <input type="text" placeholder="" id="text-e82d" name="date" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" value = "{{ date }}">
+    </div>
+    <div class="u-form-group u-form-group-4">
+      <label for="text-df1c" class="u-label">Размер платы</label>
+      <input type="text" placeholder="Введите имеющийся размер платы" id="text-df1c" name="boardSize" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+    </div>
+    <div class="u-form-group u-form-group-5">
+      <label for="text-cbc9" class="u-label">Площадь МКД общая</label>
+      <input type="text" placeholder="Введите общую площадь здания" id="text-cbc9" name="totalArea" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+    </div>
+    <div class="u-form-group u-form-group-6">
+      <label for="text-e4f1" class="u-label">Площадь жилых и нежилых помещений</label>
+      <input type="text" id="text-e4f1" name="areaResidential" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" placeholder="Введите площадь жилых и не жилых помещений" required="required">
+    </div>
+    <div class="u-form-group u-form-group-7">
+      <label for="text-77d0" class="u-label">Этажность</label>
+      <input type="text" placeholder="Введите количество этажей" id="text-77d0" name="floor" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+    </div>
+    <div class="u-form-date u-form-group u-form-group-8">
+      <label for="text-0d94" class="u-label">Год ввода в эксплуатацию</label>
+      <input type="number" min='1900' max='{{ year_now }}' placeholder="Введите год ввода в эксплуатацию или год последнего капитального ремонта" id="text-0d94" name="yearCommissioning" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" required="required">
+    </div>
+    <div class="u-form-group u-form-select u-form-group-9">
+      <label for="select-41e1" class="u-label">Типы стен</label>
+      <div class="u-form-select-wrapper">
+        <select id="select-41e1" name="walls" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white">
+          <option value="1">Монолитные или кирпичные</option>
+          <option value="1.25">Железобетонные</option>
+          <option value="1.5">Из прочих материалов</option>
+        </select>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+      </div>
+    </div>
+    <div class="u-form-group u-form-select u-form-group-10">
+      <label for="select-b07d" class="u-label">Оборудование и благоустройство (отметить)</label>
+      <div class="u-form-select-wrapper">
+        <select id="select-b07d" name="improvement[]" class="u-border-1 u-border-grey-30 u-input u-input-rectangle u-white" size="10" multiple="multiple">
+          <option value="1">Холодное водоснабжение</option>
+          <option value="2">Центральное отопление</option>
+          <option value="3">Водоотведение</option>
+          <option value="4">Горячее водоснабжение</option>
+          <option value="5">Газоснабжение</option>
+          <option value="6">Лифты</option>
+          <option value="7">Мусоропровод</option>
+          <option value="8">Локальная котельня</option>
+          <option value="9">Внутридомовой бойлер</option>
+          <option value="10">Детская и/или спортивная площадка</option>
+          <option value="11">Внутридомовые рециркуляционные насосы горячего водоснабжения</option>
+          <option value="12">Внутридомовая пожарная или пожарно-охранная сигнализация</option>
+          <option value="13">Внутридомовая автоматизированная система коммерческого учета электроэнергии и (или) теплоснабжения и (или) горячего водоснабжения и (или) холодного водоснабжения</option>
+          <option value="14">Узел(узлы) учета и (или) система автоматического регулирования (АСКУЭ)</option>
+          <option value="15">Уборка лестничных клеток</option>
+        </select>
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="12" version="1" class="u-caret"><path fill="currentColor" d="M4 8L0 4h8z"></path></svg>
+      </div>
+    </div>
+    <div class="u-align-left u-form-group u-form-submit">
+      <a href="#" class="u-active-palette-5-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-5-base u-palette-5-light-2 u-radius-50 u-btn-1">Детализация</a>
+      <input type="submit" value="Send" name="Detail" class="u-active-palette-5-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-5-base u-palette-5-light-2 u-radius-50 u-btn-1">
+    </div>
+  </form>
+</form>
+</body>
+</html>

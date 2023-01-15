@@ -1,0 +1,21 @@
+<!DOCTYPE HTML PUBLIC>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Final Selector</title>
+</head>
+<body>
+    <form action="" method="POST" name="selector">
+        {% csrf_token %}
+        <legend>Выберите дом из выпадающего списка</legend>
+        <br/>
+        <label for="finalSelect">Подходящие варианты: </label>
+        <select id="finalSelect" name="finalSelect">
+            {% for element, name in outDict.items%}
+            <option value="{{element}}">{{name}}</option>
+            {%endfor%}
+        </select>
+        <button id="consumeButton" type="submit" name="selector">Consume</button>
+    </form>
+</body>
+</html>

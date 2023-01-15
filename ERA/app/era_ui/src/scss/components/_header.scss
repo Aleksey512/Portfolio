@@ -1,0 +1,254 @@
+.header {
+  background: linear-gradient(to bottom, #3D5D99, #6D93DA);
+  padding: 5px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 80px;
+  }
+
+  &__list {
+    display: flex;
+
+    &-item:not(:last-child) {
+      margin-right: 20px;
+    }
+
+    &-link {
+      font-size: 18px;
+    }
+  }
+
+
+  &--menu {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    transition: all .2s;
+
+    div {
+      div {
+        button {
+          z-index: 98;
+          transition: .2s;
+        }
+
+      }
+    }
+  }
+}
+
+.logo__box {
+  max-width: 70px;
+  max-height: 80px;
+  padding-left: 50px;
+  position: absolute;
+  left: 43%;
+}
+
+.logo {
+
+  &__link {
+    svg {
+      max-width: 70px;
+      max-height: 80px;
+
+      .st2:hover {
+        stroke: $accent-color;
+      }
+
+      .st3:hover {
+        stroke: $accent-color;
+      }
+
+      .st4:hover {
+        stroke: $accent-color;
+      }
+    }
+
+    img {
+      max-width: 350%;
+    }
+  }
+}
+
+
+body {
+  position: relative;
+  background-color: rgb(223, 223, 223);
+}
+
+.header__list-link {
+  font-size: 20px;
+}
+
+.menu__btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transform: translateY(5px);
+
+  svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  &:hover {
+    svg {
+      path {
+        stroke: $accent-color;
+        transition: .2s;
+      }
+    }
+  }
+
+}
+
+.menu {
+  position: fixed;
+  display: none;
+  background: linear-gradient(to bottom, #6D93DA, #3D5D99);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+  transition: all .2s;
+
+  ui {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    margin: 0 auto;
+
+    & li {
+      display: flex;
+
+      a {
+        font-size: 40px;
+        text-decoration: none;
+
+        &:hover {
+          color: $accent-color;
+        }
+      }
+    }
+  }
+
+  &--active {
+    display: flex;
+    transition: .2s;
+  }
+
+  &__list-box {
+    display: flex;
+    width: 280px;
+    flex-direction: column;
+    position: relative;
+  }
+
+  &__list-container {
+    margin: 0 auto;
+    order: 1;
+    position: absolute;
+    top: 76px;
+  }
+
+  &__list-box .menu__list-container {
+    max-height: 0;
+    opacity: 0;
+    background-color: $default-color;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #122f55;
+
+    a {
+      color: #fff;
+      cursor: pointer;
+      font-size: 28px;
+    }
+
+    .menu__option:hover {
+      background-color: #5b6879;
+    }
+  }
+
+  &__option {
+    padding: 18px;
+    width: 500px;
+  }
+
+  &__list-box .menu__option, .menu__selected {
+    cursor: pointer;
+  }
+
+  &__selected {
+    color: #fff;
+    font-size: 40px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    padding: 4px !important;
+    position: relative;
+
+    order: 0;
+
+    &::after {
+      position: absolute;
+      content: '';
+      background-image: url('../../images/arrow-down.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 100%;
+      width: 28px;
+      right: 12px;
+      top: 22px;
+      transition: all .4s;
+    }
+  }
+
+  &__navlink {
+    padding: 20px 25px;
+  }
+
+  &__list-box .menu__option .menu__input {
+    display: none;
+  }
+
+  &__list-box .menu__list-container.menu__list-container--active {
+    max-height: 240px;
+    opacity: 1;
+    overflow-y: scroll;
+    position: absolute;
+    left: -85px;
+  }
+
+  &__list-box .menu__list-container.menu__list-container--active + .menu__selected::after {
+    transform: rotate(180deg);
+    top: -16px;
+  }
+
+  &__list-box .menu__list-container::-webkit-scrollbar {
+    width: 8px;
+    background-color: $default-color;
+    border-radius: 0 8px 8px 0;
+  }
+
+  &__list-box .menu__list-container::-webkit-scrollbar-thumb {
+    background-color: #5b6879;
+    border-radius: 0 8px 8px 0;
+  }
+
+}

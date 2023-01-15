@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Foundation Calculation</title>
+</head>
+<body>
+    <form action="" method="POST" name={{functionName}}>
+        {% csrf_token %}
+        <legend>Модуль {{functionName}}</legend>
+        <hr/>
+        <label for="elementVolume">Общая площадь: </label> <input id="elementVolume" name="elementVolume"><br/>
+        <hr/>
+
+        {% if names.0 %}
+        <label for="elementS0">{{names.0}}</label> <input id="elementS0" name="elementS0"><br/>
+        
+        <label for="elementL0">Оценка износа элемента</label> <input id="elementL0" name="elementL0"><br/>
+        <hr/>
+        {% endif %}
+
+        {% if names.1 %}
+        <label for="elementS1">{{names.1}}</label> <input id="elementS1" name="elementS1"><br/>
+
+        <label for="elementL1">Оценка износа элемента</label> <input id="elementL1" name="elementL1"><br/>
+        <hr/>
+        {% endif %}
+
+        {% if names.2 %}
+        <label for="elementS2">{{names.2}}</label> <input id="elementS2" name="elementS2"><br/>
+
+        <label for="elementL2">Оценка износа элемента</label> <input id="elementL2" name="elementL2"><br/>
+        <hr/>
+        {% endif %}
+
+        {% if names.3 %}
+        <label for="elementS3">{{names.3}}</label> <input id="elementS3" name="elementS3"><br/>
+
+        <label for="elementL3">Оценка износа элемента</label> <input id="elementL3" name="elementL3"><br/>
+        <hr/>
+        {% endif %}
+
+        {% if names.4 %}
+        <label for="elementS4">{{names.4}}</label> <input id="elementS4" name="elementS4"><br/>
+
+        <label for="elementL4">Оценка износа элемента</label> <input id="elementL4" name="elementL4"><br/>
+        <hr/>
+        {% endif %}
+
+        {% if names.5 %}
+        <label for="elementS5">{{names.5}}</label> <input id="elementS5" name="elementS5"><br/>
+
+        <label for="elementL5">Оценка износа элемента</label> <input id="elementL5" name="elementL5"><br/>
+        <hr/>
+        {% endif %}
+
+        {% if names.6 %}
+        <label for="elementS6">{{names.6}}</label> <input id="elementS6" name="elementS6"><br/>
+
+        <label for="elementL6">Оценка износа элемента</label> <input id="elementL6" name="elementL6"><br/>
+        <hr/>
+        {% endif %}
+        
+        {% if names.7 %}
+        <label for="elementS7">{{names.7}}</label> <input id="elementS7" name="elementS7"><br/>
+
+        <label for="elementL7">Оценка износа элемента</label> <input id="elementL7" name="elementL7"><br/>
+        <hr/>
+        {% endif %}
+
+        {% if names.8 %}
+        <label for="elementS8">{{names.8}}</label> <input id="elementS8" name="elementS8"><br/>
+
+        <label for="elementL8">Оценка износа элемента</label> <input id="elementL8" name="elementL8"><br/>
+        <hr/>
+        {% endif %}
+
+        <button id="consumeButton" type="submit" name="{{functionName}}">Consume</button>
+    </form>
+</body>
+</html>

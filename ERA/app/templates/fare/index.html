@@ -1,0 +1,820 @@
+{% extends 'base.html' %}
+{% block title %} Детализация платы {% endblock %}
+{% block content %}
+  <section class="top-slider">
+    <div class="container">
+      <h2 class="top-slider__title">
+        Ваш партнер в мире технологий
+      </h2>
+      <div class="top-slider__wrapper">
+        <div class="top-slider__item">
+          <div class="top-slider__text-content">
+            <p class="top-slider__text">
+              Перечень работ и услуг, их периодичность согласно положениям жилищного Кодекса, ПП
+              РФ № 491, № 290, а также постановления Госстроя России № 170.
+            </p>
+            <p class="top-slider__text">
+              Тип дома формируется автоматически, исходя из его конструктивных и технических
+              характеристик, степени благоустройства и перечня инженерного оборудования, входящего
+              в состав общего имущества.
+            </p>
+          </div>
+            <div class="top-slider__imgbox">
+              <img class="top-slider__img" src="/media/fare/top-slider1.jpg" alt="slider img">
+            </div>
+        </div>
+        <div class="top-slider__item">
+          <div class="top-slider__text-content">
+            <p class="top-slider__text">
+              Обязательные группы детализации - это отчисления на текущий ремонт общего
+              имущества, техническое обслуживание, технический осмотр, аварийное обслуживание,
+              санитарное содержание и благоустройство, плата за управление многоквартирным
+              домом.
+            </p>
+            <p class="top-slider__text">
+              От степени благоустройства здания также учитываются расходы: содержание локальных
+              котельных, содержание лифтового хозяйства.
+            </p>
+          </div>
+            <div class="top-slider__imgbox">
+              <img class="top-slider__img" src="/media/fare/top-slider2.png" alt="slider img">
+            </div>
+        </div>
+        <div class="top-slider__item">
+          <div class="top-slider__text-content">
+            <p class="top-slider__text">
+              Сервис поможет:
+            </p>
+            <p class="top-slider__text">
+              Органам местного самоуправления
+              в случаях, если собственники на общем собрании не приняли решение о размере платы
+              за содержание общего имущества дома.
+            </p>
+            <p class="top-slider__text">
+              Управляющим организациям:
+              при проведении общих собраний собственников
+              возникновения конфликтных ситуаций,
+              обращений, запросов госорганов управления и контроля
+            </p>
+          </div>
+            <div class="top-slider__imgbox">
+              <img class="top-slider__img" src="/media/fare/top-slider3.png" alt="slider img">
+            </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tabs">
+    <div class="container">
+      <div class="tabs__top">
+        <a class="tabs__top-item {% if calculation %} {{ "tabs__top-item--active"  }} {% endif %}" href="#tab-1" id="tabs-top__1">
+          Расчет размера платы за содержание общего имущества
+        </a>
+        <a class="tabs__top-item {% if detailing %} {{ "tabs__top-item--active"  }} {% endif %}" href="#tab-2" id="tabs-top__2">
+          Детализация платы за содержание общего имущества
+        </a>
+        <a class="tabs__top-item" href="#tab-3" id="tabs-top__3">
+          База данных расчетов
+        </a>
+      </div>
+      <div class="tabs__content">
+
+        <!----------Content-1------------------------------------------------->
+
+        <div class="tabs__content-item tabs__content-item--active" id="tab-1">
+
+          <div class="tabs__content-switch">
+            <p class="tabs__content-switch__text {% if calculation_russia %} {{ "tabs__content-switch__text--active" }} {% endif %}">Россия</p>
+            <label class="tabs__content-switch__label">
+              <input class="tabs__content-switch__input" type="checkbox" {% if calculation_orel %} {{ "checked" }} {% endif %}>
+            </label>
+            <p class="tabs__content-switch__text {% if calculation_orel %} {{ "tabs__content-switch__text--active" }} {% endif %}">Орел</p>
+          </div>
+
+          <div class="pay-detail">
+            <form class="pay-detail__form" action="" method="POST">
+              {% csrf_token %}
+              <div class="{% if calculation_russia %} {{ "wrapper-switch__1" }}  {% else %} {{ "wrapper-switch__2" }} {% endif %}">
+                <div class="pay-detail__input-wrapper">
+                  <label class="pay-detail__label">
+                    Адрес
+                    <input type="text" id="address" class="pay-detail__input address" name="address-r"
+                    placeholder="Введите адрес" value="{{ russia_address }}">
+                  </label>
+                  <label class="pay-detail__label">
+                    Год ввода в эксплуатацию
+                    <input type="number" class="pay-detail__input" name="year" value="{{ russia_year }}" min="1900" max="{{ year_now }}" step="1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Количество этажей, в том числе подземных этажей
+                    <input type="number" class="pay-detail__input" name="number__floor" value="{{ russia_number__floor }}" min="0" step="1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Количество подземных этажей/подвал
+                    <input type="number" class="pay-detail__input" name="number__basement" value="{{ russia_number__basement }}" min="0" step="1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Количество подъездов
+                    <input type="number" class="pay-detail__input" name="number__entrance" value="{{ russia_number__entrance }}" min="0" step="1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Количество квартир
+                    <input type="number" class="pay-detail__input" name="number__flat" value="{{ russia_number__flat }}" min="0" step="1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Количество проживающих
+                    <input type="number" class="pay-detail__input" name="number__people" value="{{ russia_number__people }}" min="0" step="1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Площадь здания (многоквартирного дома), кв.м
+                    <input type="number" class="pay-detail__input" name="square__building" value="{{ russia_square__building }}" min="0" step="0.1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Площадь жилых и нежилых помещений, кв.м
+                    <input type="number" class="pay-detail__input" name="square__resid-nonresid" value="{{ russia_square__resid_nonresid }}" min="0" step="0.1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Площадь чердака, кв.м
+                    <input type="number" class="pay-detail__input" name="square__attic" value="{{ russia_square__attic }}" min="0" step="0.1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Площадь подвала, кв.м
+                    <input type="number" class="pay-detail__input" name="square__basement" value="{{ russia_square__basement }}" min="0" step="0.1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Площадь лестничных площадок и маршей, кв.м
+                    <input type="number" class="pay-detail__input" name="number__landing" value="{{ russia_number__landing }}" min="0" step="0.1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Количество загрузочных клапанов мусоропровода
+                    <input type="number" class="pay-detail__input" name="number__garbagevalves" value="{{ russia_number__garbagevalves }}" min="0" step="1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Количество лифтов
+                    <input type="number" class="pay-detail__input" name="number__elevator" value="{{ russia_number__elevator }}" min="0" step="1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Площадь кабин лифтов
+                    <input type="number" class="pay-detail__input" name="square__elevatorcabin" value="{{ russia_square__elevatorcabin }}" min="0" step="0.1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Норма прибыли % (доля за управление)
+                    <input type="number" class="pay-detail__input" name="rate__ofreturn" value="{{ russia_rate__ofreturn }}" min="0" step="0.1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Базовая ставка обслуживание 1-го лифта
+                    <input type="number" class="pay-detail__input" name="maintenance__ofoneelevator" value="{{ russia_maintenance__ofoneelevator }}" min="0" step="1">
+                  </label>
+                  <label class="pay-detail__label">
+                    МРОТ
+                    <input type="number" class="pay-detail__input" name="mrot" value="{{ russia_mrot }}" min="0" step="1">
+                  </label>
+                  <div class="pay-detail__walltype-wrapper">
+                    <label class="pay-detail__label">
+                      Тип наружных стен
+                      <select class="pay-detail__walltype-select pay-detail__outwalltype-wrapper" name="russia_type__ofwall">
+                        <option value="1" {% if russia_type__ofwall == '1' %} {{ "selected" }} {% endif %}>Каменные (кирпичные)</option>
+                        <option value="2" {% if russia_type__ofwall == '2' %} {{ "selected" }} {% endif %}>Крупноблочные</option>
+                        <option value="3" {% if russia_type__ofwall == '3' %} {{ "selected" }} {% endif %}>Крупнопанельные</option>
+                        <option value="4" {% if russia_type__ofwall == '4' %} {{ "selected" }} {% endif %}>Облегченной кладки из кирпича</option>
+                        <option value="5" {% if russia_type__ofwall == '5' %} {{ "selected" }} {% endif %}>Из шлакоблоков</option>
+                        <option value="6" {% if russia_type__ofwall == '6' %} {{ "selected" }} {% endif %}>Из ракушечника</option>
+                        <option value="7" {% if russia_type__ofwall == '7' %} {{ "selected" }} {% endif %}>Смешанные (кирпичные и деревянные)</option>
+                        <option value="8" {% if russia_type__ofwall == '8' %} {{ "selected" }} {% endif %}>Сырцовые</option>
+                        <option value="9" {% if russia_type__ofwall == '9' %} {{ "selected" }} {% endif %}>Рубленные</option>
+                        <option value="10" {% if russia_type__ofwall == '10' %} {{ "selected" }} {% endif %}>Брусчатые</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="pay-detail__walltype-wrapper pay-detail__fundwalltype-wrapper">
+                    <label class="pay-detail__label">
+                      Тип фундамента
+                      <select class="pay-detail__walltype-select" name="type__offoundation">
+                        <option value="1" {% if russia_type__offoundation == '1' %} {{ "selected" }} {% endif %}>Бетонные</option>
+                        <option value="2" {% if russia_type__offoundation == '2' %} {{ "selected" }} {% endif %}>Крупноблочные</option>
+                        <option value="3" {% if russia_type__offoundation == '3' %} {{ "selected" }} {% endif %}>Ленточные бутовые</option>
+                        <option value="4" {% if russia_type__offoundation == '4' %} {{ "selected" }} {% endif %}>Облегченной кладки из кирпича</option>
+                        <option value="5" {% if russia_type__offoundation == '5' %} {{ "selected" }} {% endif %}>Из шлакоблоков</option>
+                        <option value="6" {% if russia_type__offoundation == '6' %} {{ "selected" }} {% endif %}>Из ракушечника</option>
+                        <option value="7" {% if russia_type__offoundation == '7' %} {{ "selected" }} {% endif %}>Смешанные (кирпичные и деревянные)</option>
+                        <option value="8" {% if russia_type__offoundation == '8' %} {{ "selected" }} {% endif %}>Сырцовые</option>
+                        <option value="9" {% if russia_type__offoundation == '9' %} {{ "selected" }} {% endif %}>Рубленные</option>
+                        <option value="10" {% if russia_type__offoundation == '10' %} {{ "selected" }} {% endif %}>Брусчатые</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="pay-detail__walltype-wrapper pay-detail__lapwalltype-wrapper">
+                    <label class="pay-detail__label">
+                      Тип перекрытия
+                      <select class="pay-detail__walltype-select" name="type__ofoverlap">
+                        <option value="1" {% if russia_type__ofoverlap == '1' %} {{ "selected" }} {% endif %}>Железобетонные</option>
+                        <option value="2" {% if russia_type__ofoverlap == '2' %} {{ "selected" }} {% endif %}>Cмешанные (деревянные и железобетонные)</option>
+                        <option value="3" {% if russia_type__ofoverlap == '3' %} {{ "selected" }} {% endif %}>Деревянные</option>
+                        <option value="4" {% if russia_type__ofoverlap == '4' %} {{ "selected" }} {% endif %}>Каменные своды по металлическим балкам</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+                <p class="pay-detail__equipment-title">Энергообеспечение (отметить)</p>
+                <div class="pay-detail__equipment-wrapper pay-detail__electricity-wrapper">
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Централизованное отопление</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="central__heating" {% if russia_central__heating %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Отопление и ГВС от АОГВ</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="heating__gbs-and__aogv" {% if russia_heating__gbs_and__aogvl %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Горячее водоснабжение</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="hot__watersupply" {% if russia_hot__watersupply %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Холодное водоснабжение</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="cold__watersupply" {% if russia_cold__watersupply %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Водоотведение</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="drainage" {% if russia_drainage %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Газоснабжение</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="gas__supply" {% if russia_gas__supply %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                </div>
+                <p class="pay-detail__equipment-title">Обязательные работы, услуги</p>
+                <div class="pay-detail__equipment-wrapper pay-detail__electricity-wrapper">
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Подметание лестничных площадок и маршей</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="sweeping__stairs" {% if russia_sweeping__stairs %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Подметание лестничных площадок и маршей с предварительным их
+                      увлажнением</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="sweeping__landings-with__moisture" {% if russia_sweeping__landings_with__moisture %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Мытье лестничных площадок и маршей</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="washing__stairs" {% if russia_washing__stairs %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Влажное подметание мест перед загрузочными камерами мусоропровода</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="wet__sweeping-places__nexttothe-garbage" {% if russia_wet__sweeping_places__nexttothe_garbage %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Мытье окон</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="window__washing" {% if russia_window__washing %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Иная работа по санитарной уборке подъездов и лестничных клеток</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="other__sanitationwork" {% if russia_other__sanitationwork %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Подметание кабин лифтов с предварительным их увлажнением</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="sweeping__elevators-with__moisture" {% if russia_sweeping__elevators_with__moisture %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Уборка чердачного помещения</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="cleaning__attic" {% if russia_cleaning__attic %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Уборка подвального помещения</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="basement__cleaning" {% if russia_basement__cleaning %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Содержание и ремонт лифтов</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="maintenance__and-repair__elevators" {% if russia_maintenance__and_repair__elevators %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Работы по содержанию мусоропровода</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="waste__chute-maintenance__works" {% if russia_waste__chute_maintenance__works %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Работы по содержанию и обслуживанию системы отопления</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="heating__system-maintenance__work" {% if russia_heating__system_maintenance__work %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Работы по обслуживанию газовых сетей</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="gas__network-maintenance__work" {% if russia_gas__network_maintenance__work %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Техническое обслуживание и ремонт внутридомовых сетей и инженерного
+                      оборудования</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="repair__networks-engineering__equipment" {% if russia_repair__networks_engineering__equipment %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Техническое обслуживание и ремонт конструктивных элементов зданий</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="repair__structural-elements__buildings" {% if russia_repair__structural_elements__buildings %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Аварийно-диспетчерское обслуживание</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="emergency__dispatch-service" {% if russia_emergency__dispatch_service %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Текущий ремонт (планово- предупредительный)</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="maintenance" {% if russia_maintenance %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Содержание иного общего имущества</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="maintenance__other-common__property" {% if russia_maintenance__other_common__property %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Работы по содержанию придомовой территории (санитарное содержание и
+                      благоустройство)</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="works__maintenance-adjacent__territory" {% if russia_works__maintenance_adjacent__territory %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                </div>
+
+              </div>
+
+              <div class="wrapper-switch__{% if calculation_orel %} {{ "wrapper-switch__1" }}  {% else %} {{ "wrapper-switch__2" }} {% endif %}">
+                <div class="pay-detail__input-wrapper">
+                  <label class="pay-detail__label">
+                    Адрес
+                    <input id="address" type="text" class="pay-detail__input address" name="address-o" placeholder="Введите адрес" value="{{ orel_address }}">
+                  </label>
+                  <label class="pay-detail__label">
+                    Площадь МКД общая
+                    <input type="number" class="pay-detail__input" name="square__mkd" value="{{ orel_square__mkd }}" min="0" step="0.01">
+                  </label>
+                  <label class="pay-detail__label">
+                    Площадь жилых и нежилых помещений
+                    <input type="number" class="pay-detail__input" name="square__resid-nonresid" value="{{ orel_square__resid_nonresid }}" min="0" step="0.01">
+                  </label>
+                  <label class="pay-detail__label">
+                    Этажность
+                    <input type="number" class="pay-detail__input" name="number__offloor" value="{{ orel_number__offloor }}" min="0" step="1">
+                  </label>
+                  <label class="pay-detail__label">
+                    Год ввода в эксплуатацию
+                    <input type="number" class="pay-detail__input" name="year__ofcommissioning" value="{{ orel_year__ofcommissioning }}" min="1900" max="{{ year_now }}" step="1">
+                  </label>
+                  <div class="pay-detail__walltype-wrapper">
+                    <label class="pay-detail__label">
+                      Типы стен
+                      <select multiplename="pay-detail__walltype-select" class="pay-detail__walltype-select" name="orel_type__ofwall">
+                        <option value="1" {% if orel_type__ofwall == '1' %} {{ selected }} {% endif %}>Монолитные или кирпичные</option>
+                        <option value="1.25" {% if orel_type__ofwall == '1.25' %} {{ selected }} {% endif %}>Железобетонные</option>
+                        <option value="1.5" {% if orel_type__ofwall == '1.5' %} {{ selected }} {% endif %}>Из прочих материалов</option>
+                      </select>
+                    </label>
+                  </div>
+                </div>
+                <p class="pay-detail__equipment-title">Оборудование и благоустройство (отметить)</p>
+                <div class="pay-detail__equipment-wrapper">
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Холодное водоснабжение</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="cold__watersupply" {% if orel_cold__watersupply %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Центральное отопление</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="central__heating" {% if orel_central__heating %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Водоотведение</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="drainage" {% if orel_drainage %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Горячее водоснабжение</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="hot__watersupply" {% if orel_hot__watersupply %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Газоснабжение</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="gas__supply" {% if orel_gas__supply %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Лифты</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="elevators" {% if orel_elevators %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Мусоропровод</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="garbage__chute" {% if orel_garbage__chute %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Локальная котельня</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="local__boilerhouse" {% if orel_local__boilerhouse %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Внутридомовой бойлер</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="domestic__boiler" {% if orel_domestic__boiler %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Детская и/или спортивная площадка</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="playground" {% if orel_playground %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Внутридомовые рециркуляционные насосы горячего водоснабжения</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="hot__water-pumps" {% if orel_hot__water_pumps %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Внутридомовая пожарная или пожарно-охранная сигнализация</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="fire__alarm" {% if orel_fire__alarm %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Внутридомовая автоматизированная система коммерческого учета
+                      электроэнергии и (или) теплоснабжения и (или) горячего
+                      водоснабжения и (или) холодного водоснабжения</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="water__supply-metering__system" {% if orel_water__supply_metering__system %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Узел(узлы) учета и (или) система автоматического регулирования
+                      (АСКУЭ)</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="automatic__control-system" {% if orel_automatic__control_system %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Уборка лестничных клеток</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="pay-detail__checkbox" name="staircase__cleaning" {% if orel_staircase__cleaning %} {{ "checked" }} {% endif %}>
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                  <label class="pay-detail__label pay-detail__checkbox-label">
+                    <span class="pay-detail__checkbox-text">Формировать Excel</span>
+                    <div class="pay-detail__checkbox-wrapper">
+                      <input type="checkbox" class="excel" name="excel">
+                      <span class="pay-detail__checkbox-span"></span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+              <button type="submit" class="pay-detail__btn" name="calculation__btn">РАСЧЕТ РАЗМЕРА ПЛАТЫ</button>
+            </form>
+          </div>
+          </div>
+          {% if calculation_table %}
+          <table class="base-table">
+            <thead class="base-table__head">
+              <tr>
+                <th scope="col">Адрес: {% if orel_address %} {{ orel_address }} {% else %} {{ russia_address }} {% endif %}</th>
+                <th scope="col">Размер платы: {{ board_size }}</th>
+                <th colspan="2" scope="col">Дата: {{ date }}</th>
+              </tr>
+              <tr>
+                <th rowSpan="2" scope="col">№ п/п</th>
+                <th rowSpan="2" scope="col">Наименование работ и услуг</th>
+                <th rowSpan="2" scope="col">Cтоимость работ (услуг) по содержанию общего имущества на 1 кв.м</th>
+                <th colspan="2" scope="col">{% if orel_address %} {{ "Начислено" }} {% else %} {{ "Периодичность" }} {% endif %}</th>
+              </tr>
+              {% if orel_address %}
+              <tr>
+                <th scope="col">Месяц</th>
+                <th scope="col">Год</th>
+              </tr>
+              {% endif %}
+            </thead>
+            <tbody class="base-table__body">
+            {% if orel_address %}
+              {% for el in orel_arr %}
+              <tr>
+                <th scope="row">{{ el.category }}</th>
+                <td>{{ el.name }}</td>
+                <td>{{ el.v1 }}</td>
+                <td>{{ el.v2 }}</td>
+                <td>{{ el.v3 }}</td>
+              </tr>
+              {% endfor %}
+            {% else %}
+              {% for el, val in russia_arr.items %}
+              <tr>
+                <th scope="row">{{ val.0 }}</th>
+                <td>{{ el }}</td>
+                <td>{{ val.1 }}</td>
+                <td>{{ val.2 }}</td>
+              </tr>
+              {% endfor %}
+            {% endif %}
+            {% if orel_address %}
+              <tr>
+                <th scope="row">Итого</th>
+                <td></td>
+                <td>{{ orel_sum }}</td>
+                <td>{{ orel_sum_square }}</td>
+                <td>{{ orel_sum_year }}</td>
+              </tr>
+            {% endif %}
+            </tbody>
+          </table>
+          {% endif %}
+        </div>
+
+        <!-----Content-2---------------------------------------------------->
+
+        <div class="tabs__content-item" id="tab-2">
+          <div class="pay-detail">
+            <form class="pay-detail__form" action="">
+
+              <div class="pay-detail__input-wrapper">
+                <label class="pay-detail__label">
+                  Адрес
+                  <input id="address" type="text" class="pay-detail__input address" name="address" placeholder="Введите адрес">
+                </label>
+                <label class="pay-detail__label">
+                  Размер платы
+                  <input type="number" class="pay-detail__input" name="board__size" value="0" min="0" step="0.01">
+                </label>
+                <label class="pay-detail__label">
+                  Площадь МКД общая
+                  <input type="number" class="pay-detail__input" name="square__mkd" value="0" min="0" step="0.01">
+                </label>
+                <label class="pay-detail__label">
+                  Площадь жилых и нежилых помещений
+                  <input type="number" class="pay-detail__input" name="square__resid-nonresid" value="0" min="0" step="0.01">
+                </label>
+                <label class="pay-detail__label">
+                  Этажность
+                  <input type="number" class="pay-detail__input" name="number__offloor" value="0" min="0" step="1">
+                </label>
+                <label class="pay-detail__label">
+                  Год ввода в эксплуатацию
+                  <input type="number" class="pay-detail__input" name="year__ofcommissioning" value="1980" min="1900" max="2022" step="1">
+                </label>
+                <div class="pay-detail__walltype-wrapper">
+                  <label class="pay-detail__label">
+                    Типы стен
+                    <select multiplename="pay-detail__walltype-select" class="pay-detail__walltype-select" name="type__ofwall">
+                      <option value="1">Монолитные или кирпичные</option>
+                      <option value="1.25">Железобетонные</option>
+                      <option value="1.5">Из прочих материалов</option>
+                    </select>
+                  </label>
+                </div>
+              </div>
+              <p class="pay-detail__equipment-title">Оборудование и благоустройство (отметить)</p>
+              <div class="pay-detail__equipment-wrapper">
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Холодное водоснабжение</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="cold__watersupply">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Центральное отопление</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="central__heating">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Водоотведение</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="drainage">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Горячее водоснабжение</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="hot__watersupply">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Газоснабжение</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="gas__supply">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Лифты</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="elevators">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Мусоропровод</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="garbage__chute">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Локальная котельня</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="local__boilerhouse">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Внутридомовой бойлер</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="domestic__boiler">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Детская и/или спортивная площадка</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="playground">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Внутридомовые рециркуляционные насосы горячего водоснабжения</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="hot__water-pumps">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Внутридомовая пожарная или пожарно-охранная сигнализация</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="fire__alarm">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Внутридомовая автоматизированная система коммерческого учета
+                    электроэнергии и (или) теплоснабжения и (или) горячего
+                    водоснабжения и (или) холодного водоснабжения</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="water__supply-metering__system">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Узел(узлы) учета и (или) система автоматического регулирования
+                    (АСКУЭ)</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="automatic__control-system">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+                <label class="pay-detail__label pay-detail__checkbox-label">
+                  <span class="pay-detail__checkbox-text">Уборка лестничных клеток</span>
+                  <div class="pay-detail__checkbox-wrapper">
+                    <input type="checkbox" class="pay-detail__checkbox" name="staircase__cleaning">
+                    <span class="pay-detail__checkbox-span"></span>
+                  </div>
+                </label>
+              </div>
+              <button type="submit" class="pay-detail__btn" name="detalisation__btn">ДЕТАЛИЗАЦИЯ</button>
+            </form>
+          </div>
+        </div>
+
+        <!------------Content-3------------------------------------------------------------->
+
+        <div class="tabs__content-item tabs__content-item__table" id="tab-3">
+          <table class="base-table">
+            <thead class="base-table__head">
+              <tr>
+                <th scope="col">№</th>
+                <th scope="col">Управляющая организация</th>
+                <th scope="col">Адрес</th>
+                <th scope="col">Дата</th>
+                <th scope="col">Подробнее</th>
+              </tr>
+            </thead>
+            <tbody class="base-table__body">
+              <tr>
+                <th scope="row">1</th>
+                <td>ООО УК "ОРЕЛКОМПРЕССОРМАШ"</td>
+                <td>г Орёл, Наугорское шоссе, д 29А</td>
+                <td>20.09.2021</td>
+                <td>
+                  <a class="base-table__body-link" href="#">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M7 14C8.10457 14 9 13.1046 9 12C9 10.8954 8.10457 10 7 10C5.89543 10 5 10.8954 5 12C5 13.1046 5.89543 14 7 14Z"
+                        fill="#000" />
+                      <path
+                        d="M14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12Z"
+                        fill="#000" />
+                      <path
+                        d="M17 14C18.1046 14 19 13.1046 19 12C19 10.8954 18.1046 10 17 10C15.8954 10 15 10.8954 15 12C15 13.1046 15.8954 14 17 14Z"
+                        fill="#000" />
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                        fill="#000" />
+                    </svg>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

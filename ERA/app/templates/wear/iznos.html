@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Type Selector</title>
+</head>
+<body>
+    <form action="#" method="POST" name="wear">
+        {% csrf_token %}
+        <legend>Type Selector</legend>
+
+        <label for="floorNumber">Кол-во этажей:  </label>
+        <input id="floorNumber" name="floorNumber"><br/>
+
+        <label for="cellarSwitch">Наличие Подвала: <input id="cellarSwitch" name="cellarSwitch" type="checkbox" >  </label>
+        <label for="outHouseSwitch">Наличие Пристройки: <input id="outHouseSwitch" name="outHouseSwitch" type="checkbox"></label>
+        <label for="mansardSwitch">Наличие Мансарды: <input id="mansardSwitch" name="mansardSwitch" type="checkbox"> </label><br/>
+        
+        <label for="sewerSwitch">Наличие Канализации: <input id="sewerSwitch" name="sewerSwitch" type="checkbox">  </label>
+        <label for="garbageSwitch">Наличие Мусоропровода: <input id="garbageSwitch" name="garbageSwitch" type="checkbox">  </label>
+        <label for="heatingSwitch">Наличие ЦО: <input id="heatingSwitch" name="heatingSwitch" type="checkbox">  </label><br/>
+
+        <label for="cwsSwitch">Наличие ХВС: <input id="cwsSwitch" name="cwsSwitch" type="checkbox">  </label>
+        <label for="hwsSwitch">Наличие ГВС: <input id="hwsSwitch" name="hwsSwitch" type="checkbox"></label>
+        <label for="electroSwitch">Наличие электропроводки: <input id="electroSwitch" name="electroSwitch" type="checkbox"> </label><br/>
+
+        <label for="formMaxVolume">Максимальный объём:   </label>
+        <input id="formMaxVolume" name="formMaxVolume"><br/>
+
+        <label for="foundationSelect">Тип Фундамента</label>
+        <select id="foundationSelect" name="foundationSelect">
+            <option value="0">Выбирите</option>
+            <option value="1.1">Столбчатые деревянные с забиркой</option>
+            <option value="1.2">Столбчатые каменные с кирпичным цоколем</option>
+            <option value="1.3">Ленточные каменные</option>
+            <option value="1.4">Ленточные каменные крупноблочные</option>
+            <option value="1.5">Бетонные и железобетонные </option>
+            <option value="1.6">Свайные столбчатые каменные, бетонные и железобетонные </option>
+        </select>
+        <br/>
+        <label for="wallsSelect">Тип стен</label>
+        <select id="wallsSelect" name="wallsSelect">
+            <option value="0">Выбирите</option>
+            <option value="2.1">Стены деревянные, сборно-щитовые </option>
+            <option value="2.2">Стены деревянные каркасные</option>
+            <option value="2.3">Стены рубленые из бревен и брусчатые </option>
+            <option value="2.4">Стены деревянные рубленные, каркасные и брусчатые с наружной облицовкой кирпичом </option>
+            <option value="2.5">Стены кирпичные </option>
+            <option value="2.6">Стены кирпичные с облицовкой керамическими блоками и плитками </option>
+            <option value="2.7">Стены из мелких блоков, искусственных и естественных камней</option>
+            <option value="2.8">Стены из крупноразмерных блоков и однослойных несущих панелей </option>
+            <option value="2.9">Стены из слоистых железобетонных панелей </option>
+            <option value="2.11">Стены из несущих панелей </option>
+        </select>
+        <br/>
+        <label for="slabsSelect">Тип перекрытий</label>
+        <select id="slabsSelect" name="slabsSelect">
+            <option value="0">Выбирите</option>
+            <option value="3.1">Перекрытия деревянные неоштукатуренные </option>
+            <option value="3.2">Перекрытия деревянные оштукатуренные </option>
+            <option value="3.3">Перекрытия из кирпичных сводов по стальным балкам </option>
+            <option value="3.4">Перекрытия из двухскорлупных железобетонных прокатных панелей </option>
+            <option value="3.5">Перекрытия из сборного железобетонного настила </option>
+            <option value="3.6">Перекрытия из сборных и монолитных сплошных плит</option>
+            <option value="3.7">Монолитные и сборные железобетонные балки покрытий и перекрытий </option>
+        </select>
+        <br/>
+        <label for="balconySelect">Тип балконов</label>
+        <select id="balconySelect" name="balconySelect">
+            <option value="0">Выбирите</option>
+            <option value="4.1">Сборные железобетонные детали лоджий</option>
+            <option value="4.2">Балконы, козырьки</option>
+        </select>
+        <br/>
+        <label for="roofSelect">Тип крыши</label>
+        <select id="roofSelect" name="roofSelect">
+            <option value="0">Выбирите</option>
+            <option value="5.1">Крыши деревянные</option>
+            <option value="5.2">Крыши железобетонные сборные (чердачные)</option>
+            <option value="5.3">Крыши совмещенные из сборных железобетонных слоистых панелей</option>
+        </select>
+        <br/>
+        <label for="roofingSelect">Тип перекрытий</label>
+        <select id="roofingSelect" name="roofingSelect">
+            <option value="0">Выбирите</option>
+            <option value="6.1">Кровли рулонные</option>
+            <option value="6.2">Кровли мастичные</option>
+            <option value="6.3">Кровли стальные</option>
+            <option value="6.4">Кровли из асбестоцементных листов</option>
+            <option value="6.5">Кровли черепичные</option>
+            <option value="6.6">Кровли драночные</option>
+            <option value="6.7">Кровли тесовые </option>
+        </select>
+        <hr/>
+        
+        <label for="liftSwitch">Наличие Лифта: <input id="liftSwitch" name="liftSwitch" type="checkbox">  </label>
+        <label for="mansardType">Вид мансарды</label>
+        <select id="mansardType" name="mansardType">
+            <option value="hot">С теплоизоляцией</option>
+            <option value="cold">Без теплоизоляции</option>
+        </select>
+
+        <br/><br/>
+
+        <button id="consumeButton" type="submit" name="wear">Consume</button>
+    </form>
+    <br/>
+</body>
+</html>
